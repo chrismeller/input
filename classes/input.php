@@ -36,7 +36,7 @@
 			$this->raw['COOKIE'] = $_COOKIE;
 			$this->raw['SERVER'] = $_SERVER;
 			
-			$global_xss = Kohana::config( 'security.global_xss_filtering' );
+			$global_xss = Kohana::$config->load('security.global_xss_filtering');
 			
 			// we default to enabling global cleaning. if they specifically set boolean false we'll disable it
 			if ( $global_xss === false ) {
