@@ -43,7 +43,16 @@
 				$this->use_xss_clean = false;
 			}
 			else {
-				$this->use_xss_clean = true;
+				
+				// make sure we can call it
+				if ( is_callable( array( 'Security', 'xss_clean' ) ) ) {
+					$this->use_xss_clean = true;
+				}
+				else {
+					Log::instance()->add( Log::WARNING, 'XSS Cleaning is enabled, but Security::xss_clean does not exist!' );
+					$this->use_xss_clean = false;
+				}
+				
 			}
 			
 			if ( Input::$instance === null ) {
