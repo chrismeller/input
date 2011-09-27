@@ -271,6 +271,10 @@
 		
 		protected function xss_clean ( $value ) {
 			
+			if ( !is_callable( array( 'Security', 'xss_clean' ) ) ) {
+				return $value;
+			}
+			
 			return Security::xss_clean( $value );
 			
 		}
